@@ -4,13 +4,9 @@ spring:
   cloud:
     config:
       server:
-         git:
+        git:
           default-label: config-server
-          uri: https://github.com/StevenMPG/Microservicios
+          uri: https://github.com/StevenMPG/Microservices
           search-paths: config-data
-
-
   application:
-    name: config-service
-
-
+    name: config-server
