@@ -1,0 +1,8 @@
+server:
+  application:
+    name: car-service
+  cloud:
+    config:
+      enable: true
+      uri: http://localhost:8081
+
