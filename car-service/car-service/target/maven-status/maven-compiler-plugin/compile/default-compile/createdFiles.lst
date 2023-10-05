@@ -1,0 +1,5 @@
+com\example\carservice\CarServiceApplication.class
+com\example\carservice\service\CarService.class
+com\example\carservice\controller\CarController.class
+com\example\carservice\repository\CarRepository.class
+com\example\carservice\entity\Car.class
