@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: car-service
+  profiles:
+    active: default  # Nombre del perfil activo
+
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081  # URL del servidor de configuración
+      label: main
