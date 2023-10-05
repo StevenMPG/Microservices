@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Service
 public class UserService {
@@ -52,48 +51,50 @@ public class UserService {
         List<Bike> bikes = restTemplate.getForObject("http://localhost:8003/bike/byuser/" + userId, List.class);
         return bikes;
     }
-    public Car saveCar( int userId , Car car){
+
+    public Car saveCar(int userId, Car car) {
         car.setUserId(userId);
-        Car carNew =carFeignClient.save(car);
+        Car carNew = carFeignClient.save(car);
         return carNew;
 
     }
-    public List<Car> getCarsById(int userId){
-       List<Car> cars = carFeignClient.getCars(userId);
-       return cars;
+
+    public List<Car> getCarsById(int userId) {
+        List<Car> cars = carFeignClient.getCars(userId);
+        return cars;
 
     }
 
-    public Bike saveBike( int userId , Bike bike){
+    public Bike saveBike(int userId, Bike bike) {
         bike.setUserId(userId);
-        Bike bikeNew =bikeFeignClient.save(bike);
+        Bike bikeNew = bikeFeignClient.save(bike);
         return bikeNew;
 
     }
 
-    public Map<String, Object> getUserAndVehicles(int userId){
-        Map<String,Object> result = new HashMap<>();
+    public Map<String, Object> getUserAndVehicles(int userId) {
+        Map<String, Object> result = new HashMap<>();
         User user = userRepository.findById(userId).orElse(null);
 
-        if(user == null){
-            result.put("Mensaje","no existe el usuario");
+        if (user == null) {
+            result.put("Mensaje", "no existe el usuario");
         }
         result.put("User", user);
 
         List<Car> cars = carFeignClient.getCars(userId);
-        if(cars.isEmpty()){
-            result.put("Cars","ese user no tiene coches");
+        if (cars.isEmpty()) {
+            result.put("Cars", "ese user no tiene coches");
 
-        }else
-            result.put("Cars",cars);
+        } else
+            result.put("Cars", cars);
 
 
         List<Bike> bikes = bikeFeignClient.getBikes(userId);
-        if(bikes.isEmpty()){
-            result.put("Bikes","ese user no tiene Motos");
+        if (bikes.isEmpty()) {
+            result.put("Bikes", "ese user no tiene Motos");
 
-        }else{
-            result.put("Bikes",bikes);
+        } else {
+            result.put("Bikes", bikes);
 
         }
 
